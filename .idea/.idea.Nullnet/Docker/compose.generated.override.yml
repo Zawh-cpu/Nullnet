@@ -1,0 +1,58 @@
+# This is a generated file. Not intended for manual editing.
+services:
+  database:
+    build:
+      context: "C:\\Users\\zawha\\RiderProjects\\Nullnet"
+      dockerfile: "Database/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net10.0/Database.dll"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "database:dev"
+    ports: []
+    volumes:
+    - "C:\\Users\\zawha\\RiderProjects\\Nullnet\\Database:/app:rw"
+    - "C:\\Users\\zawha\\RiderProjects\\Nullnet:/src:rw"
+    - "C:\\Users\\zawha\\.nuget\\packages:/home/app/.nuget/packages"
+    working_dir: "/app"
+  db-migrator:
+    build:
+      context: "C:\\Users\\zawha\\RiderProjects\\Nullnet"
+      dockerfile: "Database.Migrator/Dockerfile"
+      target: "build"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net10.0/Database.Migrator.dll"
+    environment:
+      DOTNET_ENVIRONMENT: "Development"
+    image: "database.migrator:dev"
+    ports: []
+    volumes:
+    - "C:\\Users\\zawha\\RiderProjects\\Nullnet\\Database.Migrator:/app:rw"
+    - "C:\\Users\\zawha\\RiderProjects\\Nullnet:/src:rw"
+    - "C:\\Users\\zawha\\.nuget\\packages:/root/.nuget/packages"
+    working_dir: "/app"
+  nullnet:
+    build:
+      context: "C:\\Users\\zawha\\RiderProjects\\Nullnet"
+      dockerfile: "Nullnet/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net10.0/Nullnet.dll"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "nullnet:dev"
+    ports: []
+    volumes:
+    - "C:\\Users\\zawha\\RiderProjects\\Nullnet\\Nullnet:/app:rw"
+    - "C:\\Users\\zawha\\RiderProjects\\Nullnet:/src:rw"
+    - "C:\\Users\\zawha\\.nuget\\packages:/home/app/.nuget/packages"
+    working_dir: "/app"

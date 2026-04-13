@@ -1,0 +1,42 @@
+﻿services:
+  db:
+    image: postgres:18-bookworm
+    environment:
+      POSTGRES_DB: nullnet
+      POSTGRES_USER: nullnet_user
+      POSTGRES_PASSWORD: strong_password
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U nullnet_user -d nullnet"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    ports:
+      - "5432:5432"
+
+  db-migrator:
+    build:
+      context: .
+      dockerfile: Database.Migrator/Dockerfile
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      ConnectionStrings__DefaultConnection: Host=db;Port=5432;Database=nullnet;Username=nullnet_user;Password=strong_password
+
+  database:
+    build:
+      context: .
+      dockerfile: Database/Dockerfile
+    depends_on:
+      db:
+        condition: service_healthy
+      db-migrator:
+        condition: service_completed_successfully
+    environment:
+      ConnectionStrings__DefaultConnection: Host=db;Port=5432;Database=nullnet;Username=nullnet_user;Password=strong_password
+
+
+volumes:
+  postgres_data:
