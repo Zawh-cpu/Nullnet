@@ -4,7 +4,6 @@ using Database.Domain.Entities;
 using Database.Infrastructure.Data;
 using Database.Infrastructure.Data.Entities;
 using Microsoft.EntityFrameworkCore;
-using Optional.Unsafe;
 
 namespace Database.Infrastructure.Repositories;
 
@@ -52,26 +51,31 @@ public class ServerRepository : IServerRepository
         };
     }
 
-    public async Task PatchByIdAsync(Guid id, ServerPatchDto patch, CancellationToken ct)
+    public async Task<int> DelByIdAsync(Guid id, CancellationToken ct)
+    {
+        return await _db.Users.Where(x => x.Id == id).ExecuteDeleteAsync(ct);
+    }
+
+    public async Task UpdateByIdAsync(Guid id, ServerPatchDto patch, CancellationToken ct)
     {
         var query = _db.Servers.Where(x => x.Id == id);
 
         await query.ExecuteUpdateAsync(s =>
         {
             if (patch.LocationId.HasValue)
-                s.SetProperty(x => x.LocationId, patch.LocationId.ValueOrFailure());
+                s.SetProperty(x => x.LocationId, patch.LocationId.Value);
 
             if (patch.IpV4Address.HasValue)
-                s.SetProperty(x => x.IpV4Address, patch.IpV4Address.ValueOrFailure());
+                s.SetProperty(x => x.IpV4Address, patch.IpV4Address.Value);
 
             if (patch.IpV6Address.HasValue)
-                s.SetProperty(x => x.IpV6Address, patch.IpV6Address.ValueOrFailure());
+                s.SetProperty(x => x.IpV6Address, patch.IpV6Address.Value);
 
             if (patch.SecretKey.HasValue)
-                s.SetProperty(x => x.SecretKey, patch.SecretKey.ValueOrFailure());
+                s.SetProperty(x => x.SecretKey, patch.SecretKey.Value);
 
             if (patch.IsAvailable.HasValue)
-                s.SetProperty(x => x.IsAvailable, patch.IsAvailable.ValueOrFailure());
+                s.SetProperty(x => x.IsAvailable, patch.IsAvailable.Value);
         }, ct);
     }
 }

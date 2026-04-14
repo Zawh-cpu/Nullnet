@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Database.Migrator")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+780acfeaceeb86aab4a12f7e4acf4d3f02120a6b")]
 [assembly: System.Reflection.AssemblyProductAttribute("Database.Migrator")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Database.Migrator")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

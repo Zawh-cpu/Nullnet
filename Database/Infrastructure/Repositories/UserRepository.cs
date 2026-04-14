@@ -4,7 +4,6 @@ using Database.Domain.Entities;
 using Database.Infrastructure.Data;
 using Database.Infrastructure.Data.Entities;
 using Microsoft.EntityFrameworkCore;
-using Optional.Unsafe;
 
 namespace Database.Infrastructure.Repositories;
 
@@ -43,10 +42,10 @@ public sealed class UserRepository : IUserRepository
         await query.ExecuteUpdateAsync(s =>
         {
             if (patch.UserName.HasValue)
-                s.SetProperty(x => x.UserName, patch.UserName.ValueOrFailure());
+                s.SetProperty(x => x.UserName, patch.UserName.Value);
             
             if (patch.IsActive.HasValue)
-                s.SetProperty(x => x.IsActive, patch.IsActive.ValueOrFailure());
+                s.SetProperty(x => x.IsActive, patch.IsActive.Value);
         }, ct);
     }
 

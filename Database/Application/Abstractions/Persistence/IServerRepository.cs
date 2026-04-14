@@ -7,5 +7,6 @@ public interface IServerRepository
 {
     public Task AddAsync(Server user, CancellationToken ct);
     Task<Server?> GetByIdAsync(Guid id, CancellationToken ct);
-    Task PatchByIdAsync(Guid id, ServerPatchDto patch, CancellationToken ct);
+    Task<int> DelByIdAsync(Guid id, CancellationToken ct);
+    Task UpdateByIdAsync(Guid serverId, ServerPatchDto map, CancellationToken cancellationToken);
 }

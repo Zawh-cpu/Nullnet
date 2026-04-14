@@ -6,23 +6,18 @@ using MediatR;
 namespace Database.Application.UseCases.Users;
 
 public sealed record GetUserQuery(
-    Guid UserId, Guid ResourceId, Guid RoleId
+    Guid UserId
 ) : IRequest<UserDto?>;
 
 public sealed class GetUserQueryHandler : IRequestHandler<GetUserQuery, UserDto?>
 {
-    private readonly IRoleAssignmentRepository _roleAssignmentRepository;
     private readonly IUserRepository _userRepository;
-    private readonly IUnitOfWork _unitOfWork;
 
     public GetUserQueryHandler(
-        IRoleAssignmentRepository roleAssignmentRepository,
-        IUserRepository userRepository,
-        IUnitOfWork unitOfWork)
+        IUserRepository userRepository
+    )
     {
-        _roleAssignmentRepository = roleAssignmentRepository;
         _userRepository = userRepository;
-        _unitOfWork = unitOfWork;
     }
 
     public async Task<UserDto?> Handle(GetUserQuery request, CancellationToken cancellationToken)

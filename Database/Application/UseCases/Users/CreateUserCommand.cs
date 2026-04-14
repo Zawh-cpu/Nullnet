@@ -1,25 +1,33 @@
-﻿using Database.Application.Abstractions.Persistence;
+﻿using AutoMapper;
+using Database.Application.Abstractions.Persistence;
 using MediatR;
 
 namespace Database.Application.UseCases.Users;
 
-public sealed record CreateUserCommand(
+public sealed record CreateUserCommandRequest(
     string UserName
+);
+
+public sealed record CreateUserCommand(
+    CreateUserCommandRequest Data
 ) : IRequest<Guid>;
 
 public sealed class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Guid>
 {
+    private readonly IMapper _mapper;
     private readonly IUserRepository _userRepository;
     private readonly IRoleRepository _roleRepository;
     private readonly IRoleAssignmentRepository _roleAssignmentRepository;
     private readonly IUnitOfWork _unitOfWork;
 
     public CreateUserCommandHandler(
+        IMapper mapper,
         IUserRepository userRepository,
         IRoleRepository roleRepository,
         IRoleAssignmentRepository roleAssignmentRepository,
         IUnitOfWork unitOfWork)
     {
+        _mapper = mapper;
         _userRepository = userRepository;
         _roleRepository = roleRepository;
         _roleAssignmentRepository = roleAssignmentRepository;
@@ -28,9 +36,7 @@ public sealed class CreateUserCommandHandler : IRequestHandler<CreateUserCommand
 
     public async Task<Guid> Handle(CreateUserCommand request, CancellationToken cancellationToken)
     {
-        var user = Domain.Entities.User.Create(
-            request.UserName
-        );
+        var user = _mapper.Map<Domain.Entities.User>(request.Data);
 
         await _userRepository.AddAsync(user, cancellationToken);
 
