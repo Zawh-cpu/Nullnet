@@ -1,7 +1,6 @@
 ﻿using Database.Application.UseCases.Users;
 using Database.Presentation.Api.v1.Requests;
 using Microsoft.AspNetCore.Mvc;
-using PatchUserRequest = Database.Presentation.Api.v1.Requests.PatchUserRequest;
 
 namespace Database.Presentation.Api.v1;
 
@@ -13,17 +12,18 @@ public partial class UserController
         [FromBody] PatchUserRequest request,
         CancellationToken cancellationToken)
     {
-        var command = new PatchUserCommand(
+        var res = _sender.Send(new PatchUserCommand(
             userId,
-            new Application.UseCases.Users.PatchUserRequest(
-                    request.UserName,
-                    request.IsActive,
-                )
-        );
+            new PatchUserCommandRequest(
+                UserName: request.UserName,
+                IsVerified: request.IsVerified,
+                IsActive: request.IsActive
+            )
+        ), cancellationToken);
 
         return CreatedAtAction(
             nameof(GetById),
-            new { id = userId },
-            new { id = userId });
+            new { id = res.Result },
+            new { id = res.Result });
     }
 }

@@ -9,6 +9,7 @@ namespace Database.Application.UseCases.Users;
 
 public sealed record PatchUserCommandRequest(
     OptionalField<string> UserName,
+    OptionalField<bool> IsVerified,
     OptionalField<bool> IsActive
 );
 

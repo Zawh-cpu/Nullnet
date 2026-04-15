@@ -2,14 +2,9 @@
 
 namespace Database.Application.DTO.PatchEntities;
 
-public class UserPatchDto
+public class UserPatchDto(OptionalField<string> userName, OptionalField<bool> isVerified, OptionalField<bool> isActive)
 {
-    public OptionalField<string> UserName { get; }
-    public OptionalField<bool> IsActive { get; }
-
-    public UserPatchDto(OptionalField<string> userName, OptionalField<bool> isActive)
-    {
-        UserName = userName;
-        IsActive = isActive;
-    }
+    public OptionalField<string> UserName { get; } = userName;
+    public OptionalField<bool> IsVerified { get; } = isVerified;
+    public OptionalField<bool> IsActive { get; } = isActive;
 }

@@ -5,7 +5,9 @@ using MediatR;
 namespace Database.Application.UseCases.Users;
 
 public sealed record CreateUserCommandRequest(
-    string UserName
+    string UserName,
+    bool IsVerified,
+    bool IsActive
 );
 
 public sealed record CreateUserCommand(

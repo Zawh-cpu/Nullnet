@@ -1,4 +1,5 @@
-﻿using Database.Application.Abstractions.Persistence;
+﻿using AutoMapper;
+using Database.Application.Abstractions.Persistence;
 using Database.Application.DTO.PatchEntities;
 using Database.Domain.Entities;
 using Database.Infrastructure.Data;
@@ -9,10 +10,12 @@ namespace Database.Infrastructure.Repositories;
 
 public sealed class UserRepository : IUserRepository
 {
+    private readonly IMapper _mapper;
     private readonly AppDbContext _db;
 
-    public UserRepository(AppDbContext db)
+    public UserRepository(IMapper mapper, AppDbContext db)
     {
+        _mapper = mapper;
         _db = db;
     }
 
@@ -54,7 +57,7 @@ public sealed class UserRepository : IUserRepository
         var entity = await _db.Users.FirstOrDefaultAsync(x => x.Id == id, ct);
         if (entity is null) return null;
 
-        return new User(entity.Id, entity.UserName);
+        return _mapper.Map<User>(entity);
     }
 
     public async Task<int> DelByIdAsync(Guid id, CancellationToken ct)

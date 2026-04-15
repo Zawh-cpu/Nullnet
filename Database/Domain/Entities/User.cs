@@ -1,20 +1,10 @@
 ﻿namespace Database.Domain.Entities;
 
-public sealed class User
+public sealed class User(Guid id, string userName, bool isVerified, bool isActive, DateTime createdAt)
 {
-    public Guid Id { get; set; }
-    public string UserName { get; set; }
-    public bool IsActive { get; set; }
-
-    public User(Guid id, string userName, bool isActive = true)
-    {
-        Id = id;
-        UserName = userName;
-        IsActive = isActive;
-    }
-
-    public static User Create(string userName, bool isActive = true)
-    {
-        return new User(Guid.NewGuid(), userName, isActive);
-    }
+    public Guid Id { get; set; } = id;
+    public string UserName { get; set; } = userName;
+    public bool IsVerified { get; set; } = isVerified;
+    public bool IsActive { get; set; } = isActive;
+    public DateTime CreatedAt { get; set; } = createdAt;
 }

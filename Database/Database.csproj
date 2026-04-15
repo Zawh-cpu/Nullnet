@@ -41,6 +41,9 @@
       <Compile Update="Presentation\Api\v1\UserController.PatchUser.cs">
         <DependentUpon>UserController.cs</DependentUpon>
       </Compile>
+      <Compile Update="Presentation\Api\v1\UserController.GetById.cs">
+        <DependentUpon>UserController.cs</DependentUpon>
+      </Compile>
     </ItemGroup>
 
 </Project>

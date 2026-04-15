@@ -11,11 +11,11 @@ public partial class UserController
         [FromBody] CreateUserRequest request,
         CancellationToken cancellationToken)
     {
-        var command = new CreateUserCommand(
-            request.UserName
-        );
-
-        var userId = await _sender.Send(command, cancellationToken);
+        var userId = await _sender.Send(new CreateUserCommand(new CreateUserCommandRequest(
+            UserName: request.UserName,
+            IsVerified: request.IsVerified,
+            IsActive: request.IsActive
+        )), cancellationToken);
 
         return CreatedAtAction(
             nameof(GetById),
@@ -23,9 +23,5 @@ public partial class UserController
             new { id = userId });
     }
     
-    [HttpGet("{id:guid}")]
-    public IActionResult GetById(Guid id)
-    {
-        return Ok(new { id });
-    }
+    
 }
