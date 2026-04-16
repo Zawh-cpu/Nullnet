@@ -9,7 +9,6 @@ using MediatR;
 namespace Database.Application.UseCases.Servers;
 
 public sealed record PatchServerCommandRequest(
-    OptionalField<Guid> Id,
     OptionalField<Guid> LocationId,
     OptionalField<string?> IpV4Address,
     OptionalField<string?> IpV6Address,

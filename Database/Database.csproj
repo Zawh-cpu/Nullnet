@@ -44,6 +44,27 @@
       <Compile Update="Presentation\Api\v1\UserController.GetById.cs">
         <DependentUpon>UserController.cs</DependentUpon>
       </Compile>
+      <Compile Update="Presentation\Api\v1\SubscriptionController.GetById.cs">
+        <DependentUpon>SubscriptionController.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Presentation\Api\v1\SubscriptionController.CreateSubscription.cs">
+        <DependentUpon>SubscriptionController.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Presentation\Api\v1\RoleController.GetById.cs">
+        <DependentUpon>RoleController.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Presentation\Api\v1\SubscriptionController.GetBy.cs">
+        <DependentUpon>SubscriptionController.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Presentation\Api\v1\ServerController.CreateSubscription.cs">
+        <DependentUpon>ServerController.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Presentation\Api\v1\ServerController.GetById.cs">
+        <DependentUpon>ServerController.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Presentation\Api\v1\ServerController.PatchSubscription.cs">
+        <DependentUpon>ServerController.cs</DependentUpon>
+      </Compile>
     </ItemGroup>
 
 </Project>

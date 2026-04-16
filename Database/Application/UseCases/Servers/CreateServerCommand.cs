@@ -23,6 +23,7 @@ public sealed class CreateServerCommandHandler : IRequestHandler<CreateServerCom
 {
     private readonly IMapper _mapper;
     private readonly IServerRepository _serverRepository;
+    // private readonly ILocationService
     private readonly IUnitOfWork _unitOfWork;
 
     public CreateServerCommandHandler(

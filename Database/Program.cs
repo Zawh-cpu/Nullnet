@@ -22,6 +22,8 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connect
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IRoleRepository, RoleRepository>();
 builder.Services.AddScoped<IRoleAssignmentRepository, RoleAssignmentRepository>();
+builder.Services.AddScoped<IServerRepository, ServerRepository>();
+builder.Services.AddScoped<ISubscriptionRepository, SubscriptionRepository>();
 builder.Services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<AppDbContext>());
 
 builder.Services.AddOpenApi();
@@ -31,7 +33,7 @@ builder.Services.AddAutoMapper(cfg => { }, typeof(Program).Assembly);
 
 builder.Services.AddMediatR(cfg =>
 {
-    cfg.RegisterServicesFromAssembly(typeof(AssemblyReference).Assembly);
+    cfg.RegisterServicesFromAssembly(typeof(Program).Assembly);
 });
 
 builder.Services.AddControllers().AddJsonOptions(opt =>

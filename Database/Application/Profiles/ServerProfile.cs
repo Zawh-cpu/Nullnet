@@ -16,7 +16,10 @@ public class ServerProfile : Profile
 
         CreateMap<Server, ServerDto>()
             .ReverseMap();
-
+        
         CreateMap<PatchServerCommandRequest, ServerPatchDto>();
+        
+        CreateMap<CreateServerCommandRequest, Server>()
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(_ => Guid.NewGuid()));
     }
 }

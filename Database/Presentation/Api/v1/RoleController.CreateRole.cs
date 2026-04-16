@@ -24,10 +24,4 @@ public partial class RoleController
             new { id = roleId },
             new { id = roleId });
     }
-    
-    [HttpGet("{id:guid}")]
-    public IActionResult GetById(Guid id)
-    {
-        return Ok(new { id });
-    }
 }

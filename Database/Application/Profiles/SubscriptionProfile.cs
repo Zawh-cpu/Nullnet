@@ -18,5 +18,8 @@ public class SubscriptionProfile : Profile
             .ReverseMap();
         
         CreateMap<PatchSubscriptionCommandRequest, SubscriptionPatchDto>();
+        
+        CreateMap<CreateSubscriptionCommandRequest, Subscription>()
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(_ => Guid.NewGuid()));
     }
 }

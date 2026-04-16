@@ -5,12 +5,23 @@ public readonly struct OptionalField<T>
     public bool HasValue { get; }
     public T? Value { get; }
 
-    public OptionalField(T? value)
+    private OptionalField(T? value, bool hasValue)
     {
-        HasValue = true;
+        HasValue = hasValue;
         Value = value;
     }
 
+    public static OptionalField<T> Some(T? value)
+        => new OptionalField<T>(value, true);
+
+    public static OptionalField<T> None()
+        => default;
+
     public static implicit operator OptionalField<T>(T? value)
-        => new(value);
+    {
+        if (value is null)
+            return default;
+
+        return new OptionalField<T>(value, true);
+    }
 }

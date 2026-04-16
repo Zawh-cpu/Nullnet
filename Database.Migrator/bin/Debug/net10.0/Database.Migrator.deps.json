@@ -8,10 +8,22 @@
     ".NETCoreApp,Version=v10.0": {
       "Database.Migrator/1.0.0": {
         "dependencies": {
-          "Database": "1.0.0"
+          "Database": "1.0.0",
+          "Microsoft.EntityFrameworkCore.Relational": "10.0.5"
         },
         "runtime": {
           "Database.Migrator.dll": {}
+        }
+      },
+      "AutoMapper/16.1.1": {
+        "dependencies": {
+          "Microsoft.IdentityModel.JsonWebTokens": "8.14.0"
+        },
+        "runtime": {
+          "lib/net10.0/AutoMapper.dll": {
+            "assemblyVersion": "16.0.0.0",
+            "fileVersion": "16.1.1.0"
+          }
         }
       },
       "MediatR/14.1.0": {
@@ -64,14 +76,14 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Relational/10.0.4": {
+      "Microsoft.EntityFrameworkCore.Relational/10.0.5": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "10.0.5"
         },
         "runtime": {
           "lib/net10.0/Microsoft.EntityFrameworkCore.Relational.dll": {
-            "assemblyVersion": "10.0.4.0",
-            "fileVersion": "10.0.426.12010"
+            "assemblyVersion": "10.0.5.0",
+            "fileVersion": "10.0.526.15411"
           }
         }
       },
@@ -135,7 +147,7 @@
       "Npgsql.EntityFrameworkCore.PostgreSQL/10.0.1": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "10.0.5",
-          "Microsoft.EntityFrameworkCore.Relational": "10.0.4",
+          "Microsoft.EntityFrameworkCore.Relational": "10.0.5",
           "Npgsql": "10.0.2"
         },
         "runtime": {
@@ -153,13 +165,23 @@
           }
         }
       },
+      "Swashbuckle.AspNetCore.ReDoc/10.1.7": {
+        "runtime": {
+          "lib/net10.0/Swashbuckle.AspNetCore.ReDoc.dll": {
+            "assemblyVersion": "10.1.7.0",
+            "fileVersion": "10.1.7.2427"
+          }
+        }
+      },
       "Database/1.0.0": {
         "dependencies": {
+          "AutoMapper": "16.1.1",
           "MediatR": "14.1.0",
           "Microsoft.AspNetCore.OpenApi": "10.0.5",
           "Microsoft.EntityFrameworkCore": "10.0.5",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "10.0.1",
-          "Scalar.AspNetCore": "2.13.21"
+          "Scalar.AspNetCore": "2.13.21",
+          "Swashbuckle.AspNetCore.ReDoc": "10.1.7"
         },
         "runtime": {
           "Database.dll": {
@@ -175,6 +197,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "AutoMapper/16.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-VNEky8JA15ci+oIDRGHITOGOpV4dILsf8pnn24QhDl2urtqgJ2IXiS/V2EtGU17P/+f6OeFQPJETaZXV9QOIZg==",
+      "path": "automapper/16.1.1",
+      "hashPath": "automapper.16.1.1.nupkg.sha512"
     },
     "MediatR/14.1.0": {
       "type": "package",
@@ -211,12 +240,12 @@
       "path": "microsoft.entityframeworkcore.abstractions/10.0.5",
       "hashPath": "microsoft.entityframeworkcore.abstractions.10.0.5.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.Relational/10.0.4": {
+    "Microsoft.EntityFrameworkCore.Relational/10.0.5": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-DOTjTHy93W3TwpMLM4SCm0n57Sc0Jj3+m2S6LSTstKyBB34eT1UouaMS19mpWwvtj42+sRiEjA3+rOTNoNzXFQ==",
-      "path": "microsoft.entityframeworkcore.relational/10.0.4",
-      "hashPath": "microsoft.entityframeworkcore.relational.10.0.4.nupkg.sha512"
+      "sha512": "sha512-uxmFjZEAB/KbsgWFSS4lLqkEHCfXxB2x0UcbiO4e5fCRpFFeTMSx/me6009nYJLu5IKlDwO1POh++P6RilFTDw==",
+      "path": "microsoft.entityframeworkcore.relational/10.0.5",
+      "hashPath": "microsoft.entityframeworkcore.relational.10.0.5.nupkg.sha512"
     },
     "Microsoft.IdentityModel.Abstractions/8.14.0": {
       "type": "package",
@@ -273,6 +302,13 @@
       "sha512": "sha512-A4ybafv4YQR0K91JNXZW6rxWFRRqZUgeygkcwE5+62HMllS6pnXjUBJ1/JnOQPQMeODjjAh4stqGsWgRn9xD1Q==",
       "path": "scalar.aspnetcore/2.13.21",
       "hashPath": "scalar.aspnetcore.2.13.21.nupkg.sha512"
+    },
+    "Swashbuckle.AspNetCore.ReDoc/10.1.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-aoVMCDlS4v6X6EgaowPxSSDwdvIP0NQNJR42lq+iQCVFaGRCN67wALoAZYddyxGQeBoiKSdATvP+psj7OVCuPw==",
+      "path": "swashbuckle.aspnetcore.redoc/10.1.7",
+      "hashPath": "swashbuckle.aspnetcore.redoc.10.1.7.nupkg.sha512"
     },
     "Database/1.0.0": {
       "type": "project",

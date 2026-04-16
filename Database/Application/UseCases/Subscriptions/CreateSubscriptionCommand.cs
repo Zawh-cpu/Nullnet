@@ -6,10 +6,8 @@ using MediatR;
 namespace Database.Application.UseCases.Subscriptions;
 
 public sealed record CreateSubscriptionCommandRequest(
-    Guid Id,
     string RevokableId,
     Guid UserId,
-    Guid ResourceId,
     Guid RateId,
     DateTime CreatedAt,
     DateTime PayedUntil

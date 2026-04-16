@@ -36,3 +36,5 @@ C:\Users\zawha\RiderProjects\Nullnet\Database.Migrator\obj\Debug\net10.0\refint\
 C:\Users\zawha\RiderProjects\Nullnet\Database.Migrator\obj\Debug\net10.0\Database.Migrator.pdb
 C:\Users\zawha\RiderProjects\Nullnet\Database.Migrator\obj\Debug\net10.0\Database.Migrator.genruntimeconfig.cache
 C:\Users\zawha\RiderProjects\Nullnet\Database.Migrator\obj\Debug\net10.0\ref\Database.Migrator.dll
+C:\Users\zawha\RiderProjects\Nullnet\Database.Migrator\bin\Debug\net10.0\AutoMapper.dll
+C:\Users\zawha\RiderProjects\Nullnet\Database.Migrator\bin\Debug\net10.0\Swashbuckle.AspNetCore.ReDoc.dll

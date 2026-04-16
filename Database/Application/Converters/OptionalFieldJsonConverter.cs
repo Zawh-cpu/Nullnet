@@ -14,11 +14,11 @@ public class OptionalFieldJsonConverter<T> : JsonConverter<OptionalField<T>>
     {
         if (reader.TokenType == JsonTokenType.Null)
         {
-            return new OptionalField<T>(default);
+            return OptionalField<T>.Some(default);
         }
 
         var value = JsonSerializer.Deserialize<T>(ref reader, options);
-        return new OptionalField<T>(value);
+        return OptionalField<T>.Some(value);
     }
 
     public override void Write(
@@ -28,6 +28,7 @@ public class OptionalFieldJsonConverter<T> : JsonConverter<OptionalField<T>>
     {
         if (!value.HasValue)
         {
+            writer.WriteNullValue();
             return;
         }
 

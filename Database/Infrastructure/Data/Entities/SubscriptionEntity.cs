@@ -32,4 +32,6 @@ public class SubscriptionEntity
     public DateTime CreatedAt { get; set; }
     [Required]
     public DateTime PayedUntil { get; set; }
+    
+    public bool IsActive { get; set; }
 }

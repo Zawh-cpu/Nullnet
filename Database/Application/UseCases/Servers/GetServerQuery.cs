@@ -8,9 +8,9 @@ namespace Database.Application.UseCases.Servers;
 
 public sealed record GetServerQuery(
     Guid ServerId
-) : IRequest<ServerDto?>;
+) : IRequest<ServerDto>;
 
-public sealed class GetServerQueryHandler : IRequestHandler<GetServerQuery, ServerDto?>
+public sealed class GetServerQueryHandler : IRequestHandler<GetServerQuery, ServerDto>
 {
     private readonly IMapper _mapper;
     private readonly ISubscriptionRepository _subscriptionRepository;
@@ -24,7 +24,7 @@ public sealed class GetServerQueryHandler : IRequestHandler<GetServerQuery, Serv
         _subscriptionRepository = subscriptionRepository;
     }
 
-    public async Task<ServerDto?> Handle(GetServerQuery request, CancellationToken cancellationToken)
+    public async Task<ServerDto> Handle(GetServerQuery request, CancellationToken cancellationToken)
     {
         var res = await _subscriptionRepository.GetByIdAsync(request.ServerId, cancellationToken);
         if (res is null) throw new ServerNotFoundException(request.ServerId);

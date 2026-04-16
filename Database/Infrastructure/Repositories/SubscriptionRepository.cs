@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Database.Application.Abstractions.Persistence;
 using Database.Application.DTO.PatchEntities;
+using Database.Application.SearchPolicies;
 using Database.Domain.Entities;
 using Database.Infrastructure.Data;
 using Database.Infrastructure.Data.Entities;
@@ -36,6 +37,40 @@ public class SubscriptionRepository : ISubscriptionRepository
         if (data == null) return null;
         
         return _mapper.Map<Subscription>(data);
+    }
+
+    public async Task<ICollection<Subscription>> GetByPolicyAsync(
+        SubscriptionSearchPolicy policy,
+        CancellationToken cancellationToken)
+    {
+        IQueryable<SubscriptionEntity> query = _db.Subscriptions.AsNoTracking();
+
+        if (policy.Id.HasValue)
+            query = query.Where(x => x.Id == policy.Id.Value);
+
+        if (policy.IsActive.HasValue)
+            query = query.Where(x => x.IsActive == policy.IsActive.Value);
+
+        if (policy.RateId.HasValue)
+            query = query.Where(x => x.RateId == policy.RateId.Value);
+
+        if (policy.CreatedAtFrom.HasValue)
+            query = query.Where(x => x.CreatedAt >= policy.CreatedAtFrom.Value);
+
+        if (policy.CreatedAtTo.HasValue)
+            query = query.Where(x => x.CreatedAt <= policy.CreatedAtTo.Value);
+
+        if (policy.PayedUntilFrom.HasValue)
+            query = query.Where(x => x.PayedUntil >= policy.PayedUntilFrom.Value);
+
+        if (policy.PayedUntilTo.HasValue)
+            query = query.Where(x => x.PayedUntil <= policy.PayedUntilTo.Value);
+
+        query = query
+            .Skip((int)policy.Pagination.Offset)
+            .Take((int)policy.Pagination.Limit);
+
+        return await query.Select(x => _mapper.Map<Subscription>(x)).ToListAsync(cancellationToken);
     }
 
     public async Task<int> UpdateByIdAsync(Guid subscriptionId, SubscriptionPatchDto patch, CancellationToken cancellationToken)

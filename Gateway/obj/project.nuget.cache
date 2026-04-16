@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "2x3P0ag4P1M=",
+  "dgSpecHash": "PIZ6WJFIskg=",
   "success": true,
   "projectFilePath": "C:\\Users\\zawha\\RiderProjects\\Nullnet\\Gateway\\Gateway.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\zawha\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.5\\microsoft.aspnetcore.openapi.10.0.5.nupkg.sha512",
-    "C:\\Users\\zawha\\.nuget\\packages\\microsoft.openapi\\2.0.0\\microsoft.openapi.2.0.0.nupkg.sha512"
+    "C:\\Users\\zawha\\.nuget\\packages\\microsoft.openapi\\2.0.0\\microsoft.openapi.2.0.0.nupkg.sha512",
+    "C:\\Users\\zawha\\.nuget\\packages\\scalar.aspnetcore\\2.13.22\\scalar.aspnetcore.2.13.22.nupkg.sha512",
+    "C:\\Users\\zawha\\.nuget\\packages\\swashbuckle.aspnetcore.redoc\\10.1.7\\swashbuckle.aspnetcore.redoc.10.1.7.nupkg.sha512"
   ],
   "logs": []
 }

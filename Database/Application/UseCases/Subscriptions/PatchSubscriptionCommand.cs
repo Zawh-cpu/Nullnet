@@ -9,13 +9,11 @@ using MediatR;
 namespace Database.Application.UseCases.Subscriptions;
 
 public sealed record PatchSubscriptionCommandRequest(
-    OptionalField<Guid> LocationId,
-    OptionalField<string?> IpV4Address,
-    OptionalField<string?> IpV6Address,
-    OptionalField<UInt16> DawPort,
-    OptionalField<ICollection<Protocol>> SupportedProtocols,
-    OptionalField<string> SecretKey,
-    OptionalField<bool> IsAvailable
+    OptionalField<string> RevokableId,
+    OptionalField<Guid> UserId,
+    OptionalField<Guid> RateId,
+    OptionalField<DateTime> PayedUntil,
+    OptionalField<bool> IsActive
 );
 
 public sealed record PatchSubscriptionCommand(
